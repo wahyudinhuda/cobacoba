@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <limits> // Required for numeric_limits to get min/max values
+#include <limits> 
 
 using namespace std;
 
@@ -11,21 +11,16 @@ struct Tiket{
     string maskapai;
     string tujuan;
     string asal;
-    string tanggal; // Assuming YYYY-MM-DD format for string comparison
+    string tanggal; 
     string jam_keberangkatan;
     string jam_kedatangan;
     double harga;
 };
-
-// --- Existing Functions (retained for context) ---
-
 void penerbangan (vector<Tiket> &tiket){
     Tiket t;
     cout<<"\n--- Tambah Tiket Baru ---"<<endl;
     cout<<"Masukan kode tiket           : ";
     cin >> t.kode;
-    // Clear buffer after cin, before getline if you were using getline for maskapai etc.
-    // For now, assuming single-word inputs for string fields
     cout<<"Masukan maskapai             : ";
     cin >> t.maskapai;
     cout<<"Masukan tujuan               : ";
@@ -160,13 +155,13 @@ void tampilkan_tiket_tertinggi(vector<Tiket> &tiket){
         return;
     }
 
-    double max_harga = -1.0; // Initialize with a value lower than any possible price
-    Tiket *tiket_tertinggi = nullptr; // Pointer to store the ticket with highest price
+    double max_harga = -1.0; 
+    Tiket *tiket_tertinggi = nullptr;
 
     for(size_t i = 0; i < tiket.size(); ++i){
         if(tiket[i].harga > max_harga){
             max_harga = tiket[i].harga;
-            tiket_tertinggi = &tiket[i]; // Store the address of this ticket
+            tiket_tertinggi = &tiket[i]; 
         }
     }
 
@@ -228,7 +223,7 @@ void tampilkan_tiket_terlama(vector<Tiket> &tiket){
     Tiket *tiket_terlama_ptr = &tiket[0];
 
     for(size_t i = 1; i < tiket.size(); ++i){
-        if(tiket[i].tanggal < tanggal_terlama){ // Assumes YYYY-MM-DD format for correct string comparison
+        if(tiket[i].tanggal < tanggal_terlama){ 
             tanggal_terlama = tiket[i].tanggal;
             tiket_terlama_ptr = &tiket[i];
         }
@@ -250,7 +245,6 @@ void tampilkan_tiket_terlama(vector<Tiket> &tiket){
     }
 }
 
-// --- Menu Display Function ---
 void tampilkanMenu() {
     cout << "\n===== Aplikasi Manajemen Tiket Pesawat =====" << endl;
     cout << "1. Tambah Tiket Baru" << endl;
@@ -266,7 +260,6 @@ void tampilkanMenu() {
     cout << "Masukkan pilihan Anda: ";
 }
 
-// --- Main Function with Switch Case ---
 int main() {
     vector<Tiket> daftar_tiket;
     int pilihan;
@@ -274,9 +267,6 @@ int main() {
     do {
         tampilkanMenu();
         cin >> pilihan;
-
-        // Clear the input buffer after reading the integer choice
-        // This is crucial if your input functions later use getline or read strings
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (pilihan) {
@@ -306,12 +296,12 @@ int main() {
                 break;
             case 9:
                 cout << "\nTerima kasih telah menggunakan aplikasi. Sampai jumpa!" << endl;
-                break; // Exit the loop
+                break;
             default:
                 cout << "\nPilihan tidak valid! Silakan masukkan angka antara 1 dan 9." << endl;
                 break;
         }
-    } while (pilihan != 9); // Loop continues until user chooses to exit
+    } while (pilihan != 9); 
 
     return 0;
 }
